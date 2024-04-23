@@ -257,6 +257,57 @@ bool isbalanced(node *root){
        
     }
 
+
+ //****************************left view of binary tree*****************************
+
+  
+ void solveleft(Node* root, vector<int>&ans,int level){
+     
+     if(root == NULL){
+         return ;
+     }
+     
+     if(level == ans.size()){
+         ans.push_back(root->data);
+     }
+     
+     solveleft(root->left,ans,level+1);
+     solveleft(root->right,ans,level+1);
+ }
+
+vector<int> leftView(Node *root)
+{
+   vector<int>ans;
+   solveleft(root,ans,0);
+   return ans;
+}   
+
+
+//********************************right view in binary tree************************
+
+ 
+ void solveRight(Node* root, vector<int>&ans,int level){
+     
+     if(root == NULL){
+         return ;
+     }
+     
+     if(level == ans.size()){
+         ans.push_back(root->data);
+     }
+     
+     solveRight(root->left,ans,level+1);
+     solveRight(root->right,ans,level+1);
+ }
+
+vector<int> rightView(Node *root)
+{
+   // Your code here
+   vector<int>ans;
+   solveRight(root,ans,0);
+   return ans;
+}
+
 //****************************** main function *************************************
 
 int main()
