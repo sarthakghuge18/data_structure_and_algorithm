@@ -5,8 +5,12 @@ class heap{
     public:
 
         int arr[100];
-        int size = 0;
+        int size ;
 
+        heap(){
+            arr[0] = -1;
+            size = 0;
+        }
 
         void create(){
             int n,x;
@@ -27,10 +31,39 @@ class heap{
             while(index > 1){
                 int parent = index/2;
 
-                if(arr[parent] < arr[parent]){
+                if(arr[parent] < arr[index]){
                     swap(arr[parent] , arr[index]);
                     index = parent;
                 }else{
+                    return ;
+                }
+            }
+        }
+
+
+        void remove(){
+            if(size == 0){
+                return ;
+            }
+
+            arr[1] = arr[size];
+            size--;
+
+            int i = 1;
+
+            while(i < size){
+                int leftindex = 2 * i;
+                int rightindex = (2 * i ) + 1;
+
+                if(leftindex < size && arr[i] < arr[leftindex]){
+                    swap(arr[leftindex],arr[i]);
+                    i = leftindex;
+                }
+                else if(rightindex < size && arr[i] < arr[rightindex]){
+                    swap(arr[i],arr[rightindex]);
+                    i = rightindex;
+                }
+                else{
                     return ;
                 }
             }
@@ -41,13 +74,50 @@ class heap{
             for(int i = 1 ; i <= size ; i++){
                 cout<<arr[i]<<" ";
             }
+            cout<<endl;
         }
+
+        
 };
+
+void heapify(int arr[],int n,int i){
+        int largest = i;
+        int left = 2 * i;
+        int right = (2 * i) + 1;
+
+        if(left < n && arr[largest] < arr[left]){
+            largest = left;
+        }
+        if(right < n && arr[largest] < arr[right]){
+            largest = right;
+        }
+
+        if(largest != i){
+            swap(arr[largest],arr[i]);
+            heapify(arr,n,largest);
+        }
+    }
+
+    
 
 int main(){
 
-    heap h;
-    h.create();
-    h.display();
+    // heap h;
+    // h.create();
+    // h.display();
+    // h.remove();
+    // h.display();
+
+
+    int arr[6] = {-1,54,53,55,52,50};
+    int n = 5;
+    for(int i = n/2 ; i >= 1 ; i--){
+        heapify(arr,n,i);
+    }
+
+    cout<<"displaying array : ";
+    for(int i = 1 ; i <= n ; i ++){
+        cout<<arr[i]<<" ";
+    }
     return 0;
 }
