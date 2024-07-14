@@ -23,6 +23,18 @@ void reverse(int arr[],int n){
     display(arr,n);
 }
 
+void swap_alternate(int arr[],int n){
+    int first = 0;
+    int second = 1;
+
+    while(second < n){
+        swap(arr[first],arr[second]);
+        first = first + 2;
+        second = second + 2;
+    }
+    display(arr,n);
+}
+
 int main(){
 
     int arr[10] = {2,3,4,5,2,8,1,9,77,33};
@@ -48,5 +60,7 @@ int main(){
     display(arr,10);
     cout<<"reverse array : ";
     reverse(arr,10);
+    cout<<"swap alternate : ";
+    swap_alternate(arr,9);
 
 }
