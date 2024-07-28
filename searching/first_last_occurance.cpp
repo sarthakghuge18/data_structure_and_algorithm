@@ -8,7 +8,7 @@ int first_occurance(int arr[],int size,int key){
     int start=0;
     int end=size-1;
     int mid=(start+end)/2;
-    int ans;
+    int ans = -1;
 
     while(start<=end){
 
@@ -32,7 +32,7 @@ int last_occurance(int arr[],int size,int key){
     int start=0;
     int end=size-1;
     int mid=(start+end)/2;
-    int ans;
+    int ans = -1;
 
     while(start<=end){
 
